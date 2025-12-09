@@ -1,25 +1,13 @@
 let chatData = null;
 let currentSlide = 0;
 
-// ========== ИНИЦИАЛИЗАЦИЯ ПОСЛЕ ЗАГРУЗКИ DOM ==========
+// ========== ИНИЦИАЛИЗАЦиЯ ПОСЛЕ ЗАГРУЗКИ DOM ==========
 document.addEventListener('DOMContentLoaded', function() {
-    // Найдем кнопку и input
-    const uploadBtn = document.getElementById('uploadBtn');
+    // Найдем input для гружки файла
     const fileInput = document.getElementById('fileInput');
     
     console.log('✓ fileInput элемент:', fileInput);
-    console.log('✓ uploadBtn элемент:', uploadBtn);
-    
-    if (uploadBtn && fileInput) {
-        // Клик на кнопку → клик на input
-        uploadBtn.addEventListener('click', function(e) {
-            console.log('🔁 uploadBtn clicked! Triggering file dialog...');
-            fileInput.click();
-        });
-        console.log('✅ Click handler attached to upload button');
-    } else {
-        console.error('❌ Button or input not found!', { uploadBtn, fileInput });
-    }
+    console.log('✅ Label with for="fileInput" will handle click automatically');
     
     if (fileInput) {
         // Обработка выбора файла
@@ -29,7 +17,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!file) return;
             
             const reader = new FileReader();
-            reader.onerror = () => alert('❌ Ошибка при чтении файла');
+            reader.onerror = () => {
+                console.error('❌ File read error');
+                alert('❌ Ошибка при чтении файла');
+            };
             reader.onload = function(event) {
                 try {
                     console.log('🔍 Парсинг JSON...');
@@ -50,6 +41,8 @@ document.addEventListener('DOMContentLoaded', function() {
             reader.readAsText(file);
         });
         console.log('✅ Change handler attached to file input');
+    } else {
+        console.error('❌ File input not found!');
     }
 });
 
