@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatWrapped 2025</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Анимированные круги на фоне -->
+    <div class="background-circles">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Загрузка -->
+        <div class="slide upload-slide active" id="upload">
+            <div class="upload-content">
+                <h1>ChatWrapped</h1>
+                <p>Твоя статистика чата за год</p>
+                <input type="file" id="fileInput" accept=".json" style="display: none;">
+                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                    Загрузить result.json
+                </button>
+                <p class="hint">Экспортируй чат из Telegram Desktop</p>
+            </div>
+        </div>
+
+        <!-- 1. Интро -->
+        <div class="slide" id="slide-intro">
+            <span class="slide-counter">1 / 23</span>
+            <div class="content">
+                <p class="label">В ЭТОМ ГОДУ</p>
+                <h1 class="stat-big" id="totalMessages">0</h1>
+                <p class="subtitle">сообщений</p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="participantsCount">0</div>
+                        <div class="stat-card-label">участников</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="activeDaysCount">0</div>
+                        <div class="stat-card-label">дней активности</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Топ авторов -->
+        <div class="slide" id="slide-top-authors">
+            <span class="slide-counter">2 / 23</span>
+            <div class="content">
+                <p class="label">ТОП АВТОРОВ</p>
+                <h2 class="title">💬<br>Кто больше всех писал</h2>
+                <div class="top-list" id="topAuthors"></div>
+            </div>
+        </div>
+
+        <!-- 3. Активность по часам -->
+        <div class="slide" id="slide-activity">
+            <span class="slide-counter">3 / 23</span>
+            <div class="content">
+                <p class="label">АКТИВНОСТЬ</p>
+                <h1 class="stat-big" id="peakHour">0:00</h1>
+                <p class="subtitle">самый активный час</p>
+                <div class="activity-chart" id="activityChart"></div>
+            </div>
+        </div>
+
+        <!-- 4. День недели -->
+        <div class="slide" id="slide-weekday">
+            <span class="slide-counter">4 / 23</span>
+            <div class="content">
+                <p class="label">АКТИВНОСТЬ</p>
+                <h2 class="title" id="weekdayTitle">Вторник</h2>
+                <p class="subtitle">самый активный день недели</p>
+                <div class="weekday-grid" id="weekdayGrid"></div>
+            </div>
+        </div>
+
+        <!-- 5. Облако слов -->
+        <div class="slide" id="slide-words">
+            <span class="slide-counter">5 / 23</span>
+            <div class="content">
+                <p class="label">СЛОВА ГОДА</p>
+                <h2 class="title">💬<br>О чём говорили</h2>
+                <div class="word-cloud" id="wordCloud"></div>
+            </div>
+        </div>
+
+        <!-- 6. Топ эмодзи -->
+        <div class="slide" id="slide-emojis">
+            <span class="slide-counter">6 / 23</span>
+            <div class="content">
+                <p class="label">РЕАКЦИИ ГОДА</p>
+                <h2 class="title">❤️<br>Любимые эмодзи</h2>
+                <div class="emoji-grid" id="emojiGrid"></div>
+            </div>
+        </div>
+
+        <!-- 7. Кто ставит реакции -->
+        <div class="slide" id="slide-reactions-given">
+            <span class="slide-counter">7 / 23</span>
+            <div class="content">
+                <p class="label">РЕАКЦИИ</p>
+                <h2 class="title">👆<br>Кто ставит больше всех</h2>
+                <div class="top-list" id="topReactionsGiven"></div>
+            </div>
+        </div>
+
+        <!-- 8. Кому ставят реакции -->
+        <div class="slide" id="slide-reactions-received">
+            <span class="slide-counter">8 / 23</span>
+            <div class="content">
+                <p class="label">РЕАКЦИИ</p>
+                <h2 class="title">🎯<br>Кому ставят больше всех</h2>
+                <div class="top-list" id="topReactionsReceived"></div>
+            </div>
+        </div>
+
+        <!-- 9. Сова и Жаворонок -->
+        <div class="slide" id="slide-day-mode">
+            <span class="slide-counter">9 / 23</span>
+            <div class="content">
+                <p class="label">РЕЖИМ ДНЯ</p>
+                <h2 class="title">Сова и Жаворонок</h2>
+                <div class="day-mode-cards" id="dayModeCards"></div>
+                <p class="chart-note">🌙 23:00-04:00 · ☀️ 05:00-07:00</p>
+            </div>
+        </div>
+
+        <!-- 10. Благодарности -->
+        <div class="slide" id="slide-thanks">
+            <span class="slide-counter">10 / 23</span>
+            <div class="content">
+                <p class="label">БЛАГОДАРНОСТИ</p>
+                <h1 class="stat-big" id="thanksTotal">0</h1>
+                <p class="subtitle">спасибо сказали</p>
+                <div class="top-list" id="topThanks" style="margin-top: 30px;"></div>
+            </div>
+        </div>
+
+        <!-- 11. Медиа -->
+        <div class="slide" id="slide-media">
+            <span class="slide-counter">11 / 23</span>
+            <div class="content">
+                <p class="label">МЕДИА</p>
+                <h1 class="stat-big" id="mediaTotal">0</h1>
+                <p class="subtitle">медиафайлов</p>
+                <div class="media-grid" id="mediaGrid"></div>
+            </div>
+        </div>
+
+        <!-- 12. Стикеры -->
+        <div class="slide" id="slide-stickers">
+            <span class="slide-counter">12 / 23</span>
+            <div class="content">
+                <p class="label">СТИКЕРЫ</p>
+                <h2 class="title">🎭<br>Кто любит стикеры</h2>
+                <div class="top-list" id="topStickers"></div>
+            </div>
+        </div>
+
+        <!-- 13. Голосовые -->
+        <div class="slide" id="slide-voice">
+            <span class="slide-counter">13 / 23</span>
+            <div class="content">
+                <p class="label">ГОЛОСОВЫЕ</p>
+                <h2 class="title">🎤<br>Кто любит войсы</h2>
+                <div class="top-list" id="topVoice"></div>
+            </div>
+        </div>
+
+        <!-- 14. Длина сообщений -->
+        <div class="slide" id="slide-message-length">
+            <span class="slide-counter">14 / 23</span>
+            <div class="content">
+                <p class="label">ДЛИНА СООБЩЕНИЙ</p>
+                <h1 class="stat-big" id="avgLength">47</h1>
+                <p class="subtitle">символов в среднем</p>
+                <div class="top-list" id="topMessageLength" style="margin-top: 30px;"></div>
+            </div>
+        </div>
+
+        <!-- 15. Формат -->
+        <div class="slide" id="slide-format">
+            <span class="slide-counter">15 / 23</span>
+            <div class="content">
+                <p class="label">ЛЮБИМЫЙ ФОРМАТ</p>
+                <h2 class="title">💬 Текст</h2>
+                <h1 class="stat-big" id="textPercent">81%</h1>
+                <p class="subtitle">всего контента</p>
+                <div class="stats-grid" style="margin-top: 25px;">
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="textMessages">0</div>
+                        <div class="stat-card-label">💬 текст</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="photoCount">0</div>
+                        <div class="stat-card-label">📷 фото</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="stickerCount">0</div>
+                        <div class="stat-card-label">🎨 стикеров</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="videoCount">0</div>
+                        <div class="stat-card-label">🎥 видео</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 16-20. Номинации -->
+        <div class="slide" id="slide-nom1">
+            <span class="slide-counter">16 / 23</span>
+            <div class="content">
+                <p class="label">НОМИНАЦИЯ</p>
+                <h2 class="title">🌙 Ночной житель</h2>
+                <div class="top-list" id="nom1List"></div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-nom2">
+            <span class="slide-counter">17 / 23</span>
+            <div class="content">
+                <p class="label">НОМИНАЦИЯ</p>
+                <h2 class="title">✏️ Главный редактор</h2>
+                <div class="top-list" id="nom2List"></div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-nom3">
+            <span class="slide-counter">18 / 23</span>
+            <div class="content">
+                <p class="label">НОМИНАЦИЯ</p>
+                <h2 class="title">📸 Фотограф года</h2>
+                <div class="top-list" id="nom3List"></div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-nom4">
+            <span class="slide-counter">19 / 23</span>
+            <div class="content">
+                <p class="label">НОМИНАЦИЯ</p>
+                <h2 class="title">🎬 Режиссёр</h2>
+                <div class="top-list" id="nom4List"></div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-nom5">
+            <span class="slide-counter">20 / 23</span>
+            <div class="content">
+                <p class="label">НОМИНАЦИЯ</p>
+                <h2 class="title">💬 Болтун года</h2>
+                <div class="top-list" id="nom5List"></div>
+            </div>
+        </div>
+
+        <!-- 21. Особый статус -->
+        <div class="slide" id="slide-special">
+            <span class="slide-counter">21 / 23</span>
+            <div class="content">
+                <p class="label">ОСОБЫЙ СТАТУС</p>
+                <h2 class="title">🎯<br>Редко, но метко</h2>
+                <div class="avatar" style="margin: 25px auto; width: 75px; height: 75px; font-size: 1.8rem;" id="specialAvatar">?</div>
+                <h3 id="specialName" style="font-size: 1.3rem; margin-bottom: 15px;">—</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="specialMessages">0</div>
+                        <div class="stat-card-label">сообщений</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="specialReplies">0</div>
+                        <div class="stat-card-label">ответов</div>
+                    </div>
+                </div>
+                <p class="subtitle" style="margin-top: 15px;">Каждое сообщение вызывает обсуждение</p>
+            </div>
+        </div>
+
+        <!-- 22. Финал -->
+        <div class="slide" id="slide-end">
+            <span class="slide-counter">22 / 23</span>
+            <div class="content">
+                <h1 class="title" style="font-size: 3rem;">Вот и всё!</h1>
+                <p class="subtitle" style="font-size: 1.2rem; margin-top: 15px;">ChatWrapped 2025</p>
+                <button class="upload-btn" onclick="restartPresentation()" style="margin-top: 35px;">Начать заново</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Кнопка скачать -->
+    <button class="download-btn" id="downloadBtn" style="display: none;">
+        <span>⬇</span>
+        <span>Скачать</span>
+    </button>
+
+    <!-- Прогресс-бар -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Навигация -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">←</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">→</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
