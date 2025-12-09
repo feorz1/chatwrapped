@@ -21,7 +21,7 @@
                 <h1>ChatWrapped</h1>
                 <p>Твоя статистика чата за год</p>
                 <input type="file" id="fileInput" accept=".json" style="display: none;">
-                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                <button class="upload-btn" id="uploadBtn">
                     Загрузить result.json
                 </button>
                 <p class="hint">Экспортируй чат из Telegram Desktop</p>
@@ -91,12 +91,12 @@
             </div>
         </div>
 
-        <!-- 6. Топ эмодзи -->
+        <!-- 6. Топ эмоджи -->
         <div class="slide" id="slide-emojis">
             <span class="slide-counter">6 / 23</span>
             <div class="content">
                 <p class="label">РЕАКЦИИ ГОДА</p>
-                <h2 class="title">❤️<br>Любимые эмодзи</h2>
+                <h2 class="title">\u2764\ufe0f<br>Любимые эмоджи</h2>
                 <div class="emoji-grid" id="emojiGrid"></div>
             </div>
         </div>
@@ -106,7 +106,7 @@
             <span class="slide-counter">7 / 23</span>
             <div class="content">
                 <p class="label">РЕАКЦИИ</p>
-                <h2 class="title">👆<br>Кто ставит больше всех</h2>
+                <h2 class="title">\ud83d\udd06<br>Кто ставит больше всех</h2>
                 <div class="top-list" id="topReactionsGiven"></div>
             </div>
         </div>
@@ -116,7 +116,7 @@
             <span class="slide-counter">8 / 23</span>
             <div class="content">
                 <p class="label">РЕАКЦИИ</p>
-                <h2 class="title">🎯<br>Кому ставят больше всех</h2>
+                <h2 class="title">\ud83c\udfaf<br>Кому ставят больше всех</h2>
                 <div class="top-list" id="topReactionsReceived"></div>
             </div>
         </div>
@@ -125,10 +125,10 @@
         <div class="slide" id="slide-day-mode">
             <span class="slide-counter">9 / 23</span>
             <div class="content">
-                <p class="label">РЕЖИМ ДНЯ</p>
+                <p class="label">РЕЖИМ ДНЕ</p>
                 <h2 class="title">Сова и Жаворонок</h2>
                 <div class="day-mode-cards" id="dayModeCards"></div>
-                <p class="chart-note">🌙 23:00-04:00 · ☀️ 05:00-07:00</p>
+                <p class="chart-note">\ud83c\udf1b 23:00-04:00 \u00b7 \u2600\ufe0f 05:00-07:00</p>
             </div>
         </div>
 
@@ -159,7 +159,7 @@
             <span class="slide-counter">12 / 23</span>
             <div class="content">
                 <p class="label">СТИКЕРЫ</p>
-                <h2 class="title">🎭<br>Кто любит стикеры</h2>
+                <h2 class="title">\ud83c\udf5f<br>Кто любит стикеры</h2>
                 <div class="top-list" id="topStickers"></div>
             </div>
         </div>
@@ -169,7 +169,7 @@
             <span class="slide-counter">13 / 23</span>
             <div class="content">
                 <p class="label">ГОЛОСОВЫЕ</p>
-                <h2 class="title">🎤<br>Кто любит войсы</h2>
+                <h2 class="title">\ud83c\udfb5<br>Кто любит войсы</h2>
                 <div class="top-list" id="topVoice"></div>
             </div>
         </div>
@@ -190,25 +190,25 @@
             <span class="slide-counter">15 / 23</span>
             <div class="content">
                 <p class="label">ЛЮБИМЫЙ ФОРМАТ</p>
-                <h2 class="title">💬 Текст</h2>
+                <h2 class="title">\ud83d\udcac Текст</h2>
                 <h1 class="stat-big" id="textPercent">81%</h1>
                 <p class="subtitle">всего контента</p>
                 <div class="stats-grid" style="margin-top: 25px;">
                     <div class="stat-card">
                         <div class="stat-card-value" id="textMessages">0</div>
-                        <div class="stat-card-label">💬 текст</div>
+                        <div class="stat-card-label">\ud83d\udcac текст</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-card-value" id="photoCount">0</div>
-                        <div class="stat-card-label">📷 фото</div>
+                        <div class="stat-card-label">\ud83d\udcf7 фото</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-card-value" id="stickerCount">0</div>
-                        <div class="stat-card-label">🎨 стикеров</div>
+                        <div class="stat-card-label">\ud83c\udf69 стикеров</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-card-value" id="videoCount">0</div>
-                        <div class="stat-card-label">🎥 видео</div>
+                        <div class="stat-card-label">\ud83c\udf9e видео</div>
                     </div>
                 </div>
             </div>
@@ -218,8 +218,8 @@
         <div class="slide" id="slide-nom1">
             <span class="slide-counter">16 / 23</span>
             <div class="content">
-                <p class="label">НОМИНАЦИЯ</p>
-                <h2 class="title">🌙 Ночной житель</h2>
+                <p class="label">НОМИНАЦИЕ</p>
+                <h2 class="title">\ud83c\udf1b Ночной житель</h2>
                 <div class="top-list" id="nom1List"></div>
             </div>
         </div>
@@ -227,8 +227,8 @@
         <div class="slide" id="slide-nom2">
             <span class="slide-counter">17 / 23</span>
             <div class="content">
-                <p class="label">НОМИНАЦИЯ</p>
-                <h2 class="title">✏️ Главный редактор</h2>
+                <p class="label">НОМИНАЦИЕ</p>
+                <h2 class="title">\u270d\ufe0f Главный редактор</h2>
                 <div class="top-list" id="nom2List"></div>
             </div>
         </div>
@@ -236,8 +236,8 @@
         <div class="slide" id="slide-nom3">
             <span class="slide-counter">18 / 23</span>
             <div class="content">
-                <p class="label">НОМИНАЦИЯ</p>
-                <h2 class="title">📸 Фотограф года</h2>
+                <p class="label">НОМИНАЦИЕ</p>
+                <h2 class="title">\ud83d\udcf8 Фотограф года</h2>
                 <div class="top-list" id="nom3List"></div>
             </div>
         </div>
@@ -245,8 +245,8 @@
         <div class="slide" id="slide-nom4">
             <span class="slide-counter">19 / 23</span>
             <div class="content">
-                <p class="label">НОМИНАЦИЯ</p>
-                <h2 class="title">🎬 Режиссёр</h2>
+                <p class="label">НОМИНАЦИЕ</p>
+                <h2 class="title">\ud83c\udf9e Режисс\u044fр</h2>
                 <div class="top-list" id="nom4List"></div>
             </div>
         </div>
@@ -254,8 +254,8 @@
         <div class="slide" id="slide-nom5">
             <span class="slide-counter">20 / 23</span>
             <div class="content">
-                <p class="label">НОМИНАЦИЯ</p>
-                <h2 class="title">💬 Болтун года</h2>
+                <p class="label">НОМИНАЦИЕ</p>
+                <h2 class="title">\ud83d\udcac Болтун года</h2>
                 <div class="top-list" id="nom5List"></div>
             </div>
         </div>
@@ -265,7 +265,7 @@
             <span class="slide-counter">21 / 23</span>
             <div class="content">
                 <p class="label">ОСОБЫЙ СТАТУС</p>
-                <h2 class="title">🎯<br>Редко, но метко</h2>
+                <h2 class="title">\ud83c\udfaf<br>Редко, но метко</h2>
                 <div class="avatar" style="margin: 25px auto; width: 75px; height: 75px; font-size: 1.8rem;" id="specialAvatar">?</div>
                 <h3 id="specialName" style="font-size: 1.3rem; margin-bottom: 15px;">—</h3>
                 <div class="stats-grid">
@@ -286,7 +286,7 @@
         <div class="slide" id="slide-end">
             <span class="slide-counter">22 / 23</span>
             <div class="content">
-                <h1 class="title" style="font-size: 3rem;">Вот и всё!</h1>
+                <h1 class="title" style="font-size: 3rem;">Вот и вс\u044f!</h1>
                 <p class="subtitle" style="font-size: 1.2rem; margin-top: 15px;">ChatWrapped 2025</p>
                 <button class="upload-btn" onclick="restartPresentation()" style="margin-top: 35px;">Начать заново</button>
             </div>
@@ -306,8 +306,8 @@
 
     <!-- Навигация -->
     <div class="navigation">
-        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">←</button>
-        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">→</button>
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">\u2190</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">\u2192</button>
     </div>
 
     <script src="script.js"></script>
