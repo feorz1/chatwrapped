@@ -3,22 +3,47 @@ let currentSlide = 0;
 
 // ========== ИНИЦИАЛИЗАЦИЯ ПОСЛЕ ЗАГРУЗКИ DOM ==========
 document.addEventListener('DOMContentLoaded', function() {
+    // Найдем кнопку и input
+    const uploadBtn = document.querySelector('.upload-btn');
     const fileInput = document.getElementById('fileInput');
+    
+    console.log('✓ fileInput элемент:', fileInput);
+    console.log('✓ uploadBtn элемент:', uploadBtn);
+    
+    if (uploadBtn && fileInput) {
+        // Клик на кнопку → клик на input
+        uploadBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('🔁 uploadBtn clicked!');
+            fileInput.click();
+        });
+    }
+    
     if (fileInput) {
+        // Обработка выбора файла
         fileInput.addEventListener('change', function(e) {
+            console.log('📄 File selected:', e.target.files[0]?.name);
             const file = e.target.files[0];
             if (!file) return;
+            
             const reader = new FileReader();
+            reader.onerror = () => alert('❌ Ошибка при чтении файла');
             reader.onload = function(event) {
                 try {
+                    console.log('🔍 Парсинг JSON...');
                     let data = JSON.parse(event.target.result);
                     if (!data || !data.messages) throw new Error('Неверный JSON');
+                    console.log('✅ Всего сообщений:', data.messages.length);
+                    
                     chatData = { messages: data.messages };
                     processData();
                     showSlide(1);
                     document.querySelector('.navigation').classList.add('visible');
+                    console.log('✅ Данные загружены!');
                 } catch(error) {
-                    alert('Ошибка: ' + error.message);
+                    console.error('❌ Ошибка парсинга:', error);
+                    alert('❌ Ошибка: ' + error.message);
                 }
             };
             reader.readAsText(file);
