@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatWrapped 2025</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        label[for="fileInput"] {
+            display: inline-block;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <!-- Анимированные круги на фоне -->
@@ -21,9 +27,9 @@
                 <h1>ChatWrapped</h1>
                 <p>Твоя статистика чата за год</p>
                 <input type="file" id="fileInput" accept=".json" style="display: none;">
-                <button class="upload-btn" id="uploadBtn">
+                <label for="fileInput" class="upload-btn">
                     Загрузить result.json
-                </button>
+                </label>
                 <p class="hint">Экспортируй чат из Telegram Desktop</p>
             </div>
         </div>
@@ -54,7 +60,7 @@
             <span class="slide-counter">2 / 23</span>
             <div class="content">
                 <p class="label">ТОП АВТОРОВ</p>
-                <h2 class="title">💬<br>Кто больше всех писал</h2>
+                <h2 class="title">\ud83d\udcac<br>Кто больше всех писал</h2>
                 <div class="top-list" id="topAuthors"></div>
             </div>
         </div>
@@ -86,7 +92,7 @@
             <span class="slide-counter">5 / 23</span>
             <div class="content">
                 <p class="label">СЛОВА ГОДА</p>
-                <h2 class="title">💬<br>О чём говорили</h2>
+                <h2 class="title">\ud83d\udcac<br>О ч\u0451м говорили</h2>
                 <div class="word-cloud" id="wordCloud"></div>
             </div>
         </div>
@@ -96,7 +102,7 @@
             <span class="slide-counter">6 / 23</span>
             <div class="content">
                 <p class="label">РЕАКЦИИ ГОДА</p>
-                <h2 class="title">\u2764\ufe0f<br>Любимые эмоджи</h2>
+                <h2 class="title">\u2764\ufe0f<br>Л\u044eбим\u044bе эмоджи</h2>
                 <div class="emoji-grid" id="emojiGrid"></div>
             </div>
         </div>
@@ -159,7 +165,7 @@
             <span class="slide-counter">12 / 23</span>
             <div class="content">
                 <p class="label">СТИКЕРЫ</p>
-                <h2 class="title">\ud83c\udf5f<br>Кто любит стикеры</h2>
+                <h2 class="title">\ud83c\udf5f<br>Кто л\u044eбит стикеры</h2>
                 <div class="top-list" id="topStickers"></div>
             </div>
         </div>
@@ -168,8 +174,8 @@
         <div class="slide" id="slide-voice">
             <span class="slide-counter">13 / 23</span>
             <div class="content">
-                <p class="label">ГОЛОСОВЫЕ</p>
-                <h2 class="title">\ud83c\udfb5<br>Кто любит войсы</h2>
+                <p class="label">ГОЛОсОВЫЕ</p>
+                <h2 class="title">\ud83c\udfb5<br>Кто л\u044eбит войсы</h2>
                 <div class="top-list" id="topVoice"></div>
             </div>
         </div>
@@ -246,7 +252,7 @@
             <span class="slide-counter">19 / 23</span>
             <div class="content">
                 <p class="label">НОМИНАЦИЕ</p>
-                <h2 class="title">\ud83c\udf9e Режисс\u044fр</h2>
+                <h2 class="title">\ud83c\udf9e Режиссёр</h2>
                 <div class="top-list" id="nom4List"></div>
             </div>
         </div>
