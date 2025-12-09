@@ -4,7 +4,7 @@ let currentSlide = 0;
 // ========== ИНИЦИАЛИЗАЦИЯ ПОСЛЕ ЗАГРУЗКИ DOM ==========
 document.addEventListener('DOMContentLoaded', function() {
     // Найдем кнопку и input
-    const uploadBtn = document.querySelector('.upload-btn');
+    const uploadBtn = document.getElementById('uploadBtn');
     const fileInput = document.getElementById('fileInput');
     
     console.log('✓ fileInput элемент:', fileInput);
@@ -13,11 +13,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (uploadBtn && fileInput) {
         // Клик на кнопку → клик на input
         uploadBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('🔁 uploadBtn clicked!');
+            console.log('🔁 uploadBtn clicked! Triggering file dialog...');
             fileInput.click();
         });
+        console.log('✅ Click handler attached to upload button');
+    } else {
+        console.error('❌ Button or input not found!', { uploadBtn, fileInput });
     }
     
     if (fileInput) {
@@ -48,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             reader.readAsText(file);
         });
+        console.log('✅ Change handler attached to file input');
     }
 });
 
