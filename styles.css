@@ -170,7 +170,7 @@ body {
     }
 }
 
-/* Загрузка */
+/* Загружка */
 .upload-content {
     text-align: center;
     padding: 40px;
@@ -200,6 +200,9 @@ label[for="fileInput"] {
     transition: all 0.3s ease;
     margin: 25px 0;
     box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
 }
 
 .upload-btn:hover,
