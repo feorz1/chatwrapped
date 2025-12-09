@@ -1,1 +1,1 @@
-См. содержимое сохранённого script.js
+См. сохранённый optimized script.js
