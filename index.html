@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatWrapped 2025</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Загрузка файла -->
+        <div class="slide upload-slide active" id="upload">
+            <div class="upload-content">
+                <h1>ChatWrapped</h1>
+                <p>Твоя статистика чата за год</p>
+                <input type="file" id="fileInput" accept=".json" style="display: none;">
+                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                    Загрузить result.json
+                </button>
+                <p class="hint">Экспортируй чат из Telegram Desktop</p>
+            </div>
+        </div>
+
+        <!-- Слайды со статистикой -->
+        <div class="slide" id="slide-intro">
+            <div class="content">
+                <h1 class="title">Твой</h1>
+                <h1 class="title-big">ChatWrapped</h1>
+                <p class="subtitle">2025</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-messages">
+            <div class="content">
+                <p class="label">Всего сообщений</p>
+                <h1 class="stat-big" id="totalMessages">0</h1>
+                <p class="subtitle">Вы были активны!</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-top-user">
+            <div class="content">
+                <p class="label">Больше всех писал</p>
+                <h1 class="stat-name" id="topUser">—</h1>
+                <p class="stat-count" id="topUserCount">0 сообщений</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-longest">
+            <div class="content">
+                <p class="label">Самое длинное сообщение</p>
+                <div class="message-preview" id="longestMessage">
+                    <p class="message-text">—</p>
+                    <p class="message-author">—</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-active-day">
+            <div class="content">
+                <p class="label">Самый активный день</p>
+                <h1 class="stat-date" id="activeDay">—</h1>
+                <p class="stat-count" id="activeDayCount">0 сообщений</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-active-hour">
+            <div class="content">
+                <p class="label">Пик активности</p>
+                <h1 class="stat-hour" id="activeHour">—</h1>
+                <p class="subtitle">Обычно пишете в это время</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-top-words">
+            <div class="content">
+                <p class="label">Топ-5 слов</p>
+                <div class="words-list" id="topWords"></div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-media">
+            <div class="content">
+                <p class="label">Контент чата</p>
+                <div class="media-stats" id="mediaStats"></div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-reactions">
+            <div class="content">
+                <p class="label">Король реакций</p>
+                <h1 class="stat-name" id="topReactions">—</h1>
+                <p class="stat-count" id="topReactionsCount">0 реакций</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-swearing">
+            <div class="content">
+                <p class="label">Больше всех матерился</p>
+                <h1 class="stat-name" id="topSwearing">—</h1>
+                <p class="stat-count" id="topSwearingCount">0 раз</p>
+            </div>
+        </div>
+
+        <!-- 5 дополнительных номинаций -->
+        <div class="slide" id="slide-nomination-1">
+            <div class="content">
+                <p class="label">🏆 Номинация</p>
+                <h2 class="nomination-title" id="nom1Title">—</h2>
+                <h1 class="stat-name" id="nom1Winner">—</h1>
+                <p class="stat-count" id="nom1Count">—</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-nomination-2">
+            <div class="content">
+                <p class="label">🏆 Номинация</p>
+                <h2 class="nomination-title" id="nom2Title">—</h2>
+                <h1 class="stat-name" id="nom2Winner">—</h1>
+                <p class="stat-count" id="nom2Count">—</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-nomination-3">
+            <div class="content">
+                <p class="label">🏆 Номинация</p>
+                <h2 class="nomination-title" id="nom3Title">—</h2>
+                <h1 class="stat-name" id="nom3Winner">—</h1>
+                <p class="stat-count" id="nom3Count">—</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-nomination-4">
+            <div class="content">
+                <p class="label">🏆 Номинация</p>
+                <h2 class="nomination-title" id="nom4Title">—</h2>
+                <h1 class="stat-name" id="nom4Winner">—</h1>
+                <p class="stat-count" id="nom4Count">—</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-nomination-5">
+            <div class="content">
+                <p class="label">🏆 Номинация</p>
+                <h2 class="nomination-title" id="nom5Title">—</h2>
+                <h1 class="stat-name" id="nom5Winner">—</h1>
+                <p class="stat-count" id="nom5Count">—</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-end">
+            <div class="content">
+                <h1 class="title">Вот и всё!</h1>
+                <p class="subtitle">ChatWrapped 2025</p>
+                <button class="restart-btn" onclick="restartPresentation()">Начать заново</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Прогресс-бар -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Навигация -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousSlide()">←</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">→</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
