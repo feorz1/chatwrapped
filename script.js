@@ -1,13 +1,12 @@
 let chatData = null;
 let currentSlide = 0;
 
-// ========== ИНИЦИАЛИЗАЦиЯ ПОСЛЕ ЗАГРУЗКИ DOM ==========
+// ========== ИНИЦИАЛИЗАЦИЯ ПОСЛЕ ЗАГРУЗКИ DOM ==========
 document.addEventListener('DOMContentLoaded', function() {
-    // Найдем input для гружки файла
     const fileInput = document.getElementById('fileInput');
     
     console.log('✓ fileInput элемент:', fileInput);
-    console.log('✅ Label with for="fileInput" will handle click automatically');
+    console.log('✅ Label with for="fileInput" works natively - no click handler needed');
     
     if (fileInput) {
         // Обработка выбора файла
